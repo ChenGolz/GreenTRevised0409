@@ -28,10 +28,12 @@
 <body class="bg-gray-50 text-gray-800 antialiased">
 <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-green-800 focus:px-3 focus:py-2 focus:rounded">Skip to content</a>
 
-<header class="sticky top-0 z-40 bg-transparent shadow-none">
-  <nav class="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+<!-- Compact white nav row only -->
+<header class="sticky top-0 z-40 bg-white shadow-sm">
+  <nav class="container mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3">
-      <img src="assets/img/logo.png" alt="GreenThumb logo" class="h-12 sm:h-14 md:h-16 w-auto drop-shadow">
+      <!-- keep logo large-ish but header tight -->
+      <img src="assets/img/logo.png" alt="GreenThumb logo" class="h-12 sm:h-14 w-auto drop-shadow">
       <span class="sr-only">GreenThumb</span>
     </a>
     <button id="navtoggle" class="md:hidden p-2 rounded border" aria-label="Toggle menu">
@@ -45,7 +47,7 @@
       <li><a class="inline-flex items-center bg-green-700 text-white px-4 py-2 rounded-full hover:bg-green-800" href="contact.html#quote">Free Quote</a></li>
     </ul>
   </nav>
-  <div id="mobmenu" class="md:hidden hidden border-t">
+  <div id="mobmenu" class="md:hidden hidden border-t bg-white">
     <ul class="container mx-auto px-4 py-3 grid gap-3 text-[16px] font-semibold">
       <li><a class="block" href="services.html">Services</a></li>
       <li><a class="block" href="about.html">About</a></li>
@@ -56,25 +58,18 @@
   </div>
 </header>
 
-<main id="main" class="has-sticky-offset">
+<main id="main">
+  <!-- Hero: no extra white space; just a little padding so text clears header -->
   <section class="relative">
     <picture>
       <source srcset="assets/img/hero-campus.webp" type="image/webp" sizes="100vw">
-      <!-- Increased mobile height from h-[48svh] to h-[56svh] -->
-      <img src="assets/img/hero-campus.jpg" alt="Aerial view of manicured corporate campus in Florida"
-           class="w-full h-[56svh] sm:h-[70vh] object-cover"
-           loading="lazy" decoding="async" width="1600" height="896">
+      <img src="assets/img/hero-campus.jpg" alt="Aerial view of manicured corporate campus in Florida" class="w-full h-[48svh] sm:h-[70vh] object-cover" loading="lazy" decoding="async" width="1600" height="896">
     </picture>
     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
     <div class="absolute inset-0 flex items-end">
-      <div class="container mx-auto px-4 sm:px-6 pb-10 pt-[var(--gt-header-h)] sm:pt-0" style="padding-top: var(--gt-header-h, 96px)">
-        <!-- Added mt-16 on mobile so headline clears sticky header -->
-        <h1 class="mt-16 sm:mt-0 leading-tight text-white text-4xl sm:text-6xl font-extrabold max-w-3xl">
-          Landscape care designed for Florida properties
-        </h1>
-        <p class="text-white/90 text-lg sm:text-xl mt-4 max-w-2xl">
-          GreenThumb maintains commercial grounds, HOAs and campuses with practical, climate-aware programs.
-        </p>
+      <div class="container mx-auto px-4 sm:px-6 pb-10 pt-6 sm:pt-0">
+        <h1 class="text-white text-4xl sm:text-6xl font-extrabold max-w-3xl">Landscape care designed for Florida properties</h1>
+        <p class="text-white/90 text-lg sm:text-xl mt-4 max-w-2xl">GreenThumb maintains commercial grounds, HOAs and campuses with practical, climate-aware programs.</p>
         <div class="mt-6 flex flex-wrap gap-3">
           <a href="contact.html#quote" class="inline-flex items-center bg-white text-green-800 font-bold px-6 py-3 rounded-full hover:bg-gray-100">Request a Quote</a>
           <a href="services.html" class="inline-flex items-center bg-green-700 text-white font-semibold px-6 py-3 rounded-full hover:bg-green-800">Explore Services</a>
@@ -124,6 +119,7 @@
   </section>
 </main>
 
+<!-- Mobile CTA dock -->
 <div class="fixed inset-x-0 bottom-3 z-50 flex justify-center md:hidden">
   <div class="bg-white/90 backdrop-blur border border-gray-200 shadow-lg rounded-full px-2 py-2 flex gap-2">
     <a aria-label="Call GreenThumb" href="tel:19417556461" class="inline-flex items-center gap-1 rounded-full bg-green-50 text-green-800 px-3 py-2 font-semibold">
@@ -167,18 +163,6 @@
 <script>
   const t=document.getElementById('navtoggle'); 
   if(t){t.addEventListener('click',()=>{document.getElementById('mobmenu').classList.toggle('hidden')});}
-</script>
-<script>
-(function () {
-  function setHeaderOffset() {
-    const header = document.querySelector('header');
-    if (!header) return;
-    const h = Math.ceil(header.getBoundingClientRect().height || 96);
-    document.documentElement.style.setProperty('--gt-header-h', h + 'px');
-  }
-  window.addEventListener('load', setHeaderOffset, { once: true });
-  window.addEventListener('resize', setHeaderOffset);
-})();
 </script>
 </body>
 </html>
